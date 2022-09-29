@@ -7,7 +7,8 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    function addProduct(Request $req) {
+    function addProduct(Request $req)
+    {
         $product = new Product;
         $product->name = $req->input('name');
         $product->price = $req->input('price');
@@ -15,5 +16,10 @@ class ProductController extends Controller
         $product->file_path = $req->file('file')->store('products');
         $product->save();
         return $req->input();
+    }
+
+
+    function list() {
+        return Product::all();
     }
 }
